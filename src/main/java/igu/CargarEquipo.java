@@ -132,7 +132,7 @@ public class CargarEquipo extends JFrame {
 					cmbSeed.setEnabled(true);
 					cmbSeed.addItem("Seed 1");
 					cmbSeed.addItem("Seed 2");
-					txtFaseInicio.setText("Fase de Grupos / PLay-In");
+					txtFaseInicio.setText("Fase de Grupos / Play-In");
 				}
 			} 
 		});
