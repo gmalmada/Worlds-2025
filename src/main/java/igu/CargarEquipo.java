@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Toolkit;
 
 public class CargarEquipo extends JFrame {
 
@@ -36,6 +37,7 @@ public class CargarEquipo extends JFrame {
 	 * Create the frame.
 	 */
 	public CargarEquipo() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CargarEquipo.class.getResource("/images/league_of_legends_world_championship-brandlogo.net_-300x300 (2).png")));
 		setTitle("Cargar equipo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1008, 710);

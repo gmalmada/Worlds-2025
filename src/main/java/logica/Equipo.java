@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.LinkedList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,11 +15,13 @@ public class Equipo {
 	private String equiTag;
 	private String equiRegion;
 	
+	private LinkedList<Jugador> listaJug = new LinkedList<Jugador>();
+	
 	public Equipo() {
 		super();
 	}
 
-	public Equipo(String equiNombre, String equiTag, String equiRegion) {
+	public Equipo(String equiNombre, String equiTag, String equiRegion, LinkedList<Jugador> listaJug) {
 		super();
 		this.equiNombre = equiNombre;
 		this.equiTag = equiTag;

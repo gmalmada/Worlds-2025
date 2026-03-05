@@ -14,6 +14,13 @@ import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.Toolkit;
 
 public class CargarJugador extends JFrame {
 
@@ -30,6 +37,7 @@ public class CargarJugador extends JFrame {
 	 * Create the frame.
 	 */
 	public CargarJugador() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CargarJugador.class.getResource("/images/league_of_legends_world_championship-brandlogo.net_-300x300 (2).png")));
 		setTitle("Cargar jugador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1005, 708);
@@ -44,8 +52,9 @@ public class CargarJugador extends JFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel_1.setBackground(new Color(192, 192, 192));
+		panel_1.setLayout(null);
 		panel_1.setBounds(10, 11, 658, 649);
 		panel.add(panel_1);
 		

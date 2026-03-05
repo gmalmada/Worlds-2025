@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class MenuInicial extends JFrame {
 
@@ -39,6 +40,7 @@ public class MenuInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuInicial() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicial.class.getResource("/images/league_of_legends_world_championship-brandlogo.net_-300x300 (2).png")));
 		setTitle("Menu principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 688);
