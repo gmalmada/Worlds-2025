@@ -5,6 +5,8 @@
   
   <persistence-unit name="Worlds2025PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>logica.Equipo</class>
+    <class>logica.Jugador</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/worlds_2025?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
