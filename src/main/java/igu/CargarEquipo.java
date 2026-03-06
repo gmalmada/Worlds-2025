@@ -6,19 +6,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.border.EtchedBorder;
+
+import logica.ControladoraLogica;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JTextPane;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
 
 public class CargarEquipo extends JFrame {
+	
+	ControladoraLogica control = new ControladoraLogica();
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -73,6 +80,26 @@ public class CargarEquipo extends JFrame {
 		panel_1.add(lblRegion);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String nomEqui = txtNombreEquipo.getText();
+				String tagEqui = txtTagEquipo.getText();
+				
+				String regiEqui = (String) cmbRegion.getSelectedItem();
+				String seedEqui = (String) cmbSeed.getSelectedItem();
+				
+				String iniEqui = txtFaseInicio.getText();
+				
+				control.guardar(nomEqui, tagEqui, regiEqui, seedEqui, iniEqui);
+				
+				JOptionPane optionPane = new JOptionPane("Equipo guardado correctamente.");
+				optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+				JDialog dialog = optionPane.createDialog("Guardado exitoso");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnGuardar.setBounds(10, 552, 170, 63);
 		panel_1.add(btnGuardar);
@@ -83,7 +110,6 @@ public class CargarEquipo extends JFrame {
 				txtNombreEquipo.setText("");
 				txtTagEquipo.setText("");
 				cmbRegion.setSelectedIndex(0);
-				cmbSeed.setSelectedIndex(0);
 				txtFaseInicio.setText("");
 			}
 		});
@@ -131,22 +157,26 @@ public class CargarEquipo extends JFrame {
 				
 				//Logica Tier S
 				if(region.equals("LAT") || region.equals("KR") || region.equals("CN") || region.equals("NA")) {
-					cmbSeed.setEnabled(false);
+					cmbSeed.setEnabled(true);
+					cmbSeed.addItem("Seed 1");
+					cmbSeed.addItem("Otro (Seed 2, 3 o 4)");
 					txtFaseInicio.setText("Fase de Grupos");
 				}else if(region.equals("EUW") || region.equals("VTN") || region.equals("PCS") || region.equals("TUK")) {
 					cmbSeed.setEnabled(true);//Desbloqueo menu Seed
 					cmbSeed.addItem("Seed 1");
 					cmbSeed.addItem("Seed 2");
 					cmbSeed.addItem("Seed 3");
-					txtFaseInicio.setText("Fase de Grupos / Play-In");
+					txtFaseInicio.setText("Fase de Grupos");
 				}else {
 					cmbSeed.setEnabled(true);
 					cmbSeed.addItem("Seed 1");
 					cmbSeed.addItem("Seed 2");
-					txtFaseInicio.setText("Fase de Grupos / Play-In");
+					txtFaseInicio.setText("Fase de Grupos");
 				}
 			} 
 		});
+		
+		
 		
 		JLabel lblTagEquipo = new JLabel("Tag (Tres letras):");
 		lblTagEquipo.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -168,6 +198,26 @@ public class CargarEquipo extends JFrame {
 		cmbSeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		cmbSeed.setBounds(95, 310, 137, 34);
 		panel_1.add(cmbSeed);
+		
+		cmbSeed.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				
+				String seed = (String) cmbSeed.getSelectedItem();
+				String region = (String) cmbRegion.getSelectedItem();
+				
+				if(seed != null && region != null) {
+					
+					boolean esTierB = region.equals("BR") || region.equals("JP") || region.equals("OCE") || region.equals("TWN");
+					
+					if(seed.equals("Seed 3") || seed.equals("Seed 2") && esTierB) {
+						txtFaseInicio.setText("Play-In");
+					}else {
+						txtFaseInicio.setText("Fase de Grupos");
+					}
+				}
+				
+			}
+		});
 		
 		JLabel lblFaseInicio = new JLabel("Fase de inicio:");
 		lblFaseInicio.setFont(new Font("Tahoma", Font.PLAIN, 20));

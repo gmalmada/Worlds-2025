@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,20 +17,25 @@ public class Equipo {
 	private String equiNombre;
 	private String equiTag;
 	private String equiRegion;
+	private String equiSeed;
+	private String equiFaseInicio;
 	
 	@OneToMany(mappedBy="jugEquipo")
-	private LinkedList<Jugador> listaJug = new LinkedList<Jugador>();
+	private List<Jugador> listaJug = new LinkedList<Jugador>();
 	
 	public Equipo() {
 		super();
 	}
 
-	public Equipo(int idEquipo, String equiNombre, String equiTag, String equiRegion, LinkedList<Jugador> listaJug) {
+	public Equipo(int idEquipo, String equiNombre, String equiTag, String equiRegion, String equiSeed,
+			String equiFaseInicio, LinkedList<Jugador> listaJug) {
 		super();
 		this.idEquipo = idEquipo;
 		this.equiNombre = equiNombre;
 		this.equiTag = equiTag;
 		this.equiRegion = equiRegion;
+		this.equiSeed = equiSeed;
+		this.equiFaseInicio = equiFaseInicio;
 		this.listaJug = listaJug;
 	}
 
@@ -65,15 +71,29 @@ public class Equipo {
 		this.equiRegion = equiRegion;
 	}
 
-	public LinkedList<Jugador> getListaJug() {
+	public String getEquiSeed() {
+		return equiSeed;
+	}
+
+	public void setEquiSeed(String equiSeed) {
+		this.equiSeed = equiSeed;
+	}
+
+	public String getEquiFaseInicio() {
+		return equiFaseInicio;
+	}
+
+	public void setEquiFaseInicio(String equiFaseInicio) {
+		this.equiFaseInicio = equiFaseInicio;
+	}
+
+	public List<Jugador> getListaJug() {
 		return listaJug;
 	}
 
 	public void setListaJug(LinkedList<Jugador> listaJug) {
 		this.listaJug = listaJug;
 	}
-
-	
 
 	
 }
