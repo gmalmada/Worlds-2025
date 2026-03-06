@@ -61,7 +61,7 @@ public class MenuInicial extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(192, 192, 192));
+		panel_1.setBackground(new Color(74, 90, 234));
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.setBounds(25, 27, 457, 594);
 		panel.add(panel_1);

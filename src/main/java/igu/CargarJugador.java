@@ -84,6 +84,7 @@ public class CargarJugador extends JFrame {
 		panel_1.add(btnVolver);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre completo:");
+		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(10, 70, 186, 41);
 		panel_1.add(lblNewLabel_2);

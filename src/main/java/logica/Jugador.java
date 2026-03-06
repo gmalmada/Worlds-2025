@@ -4,30 +4,43 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Jugador {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private int idJugador;
 	private String jugNombre;
 	private String jugUsuario;
 	private String jugRol;
 	private String jugPuesto;
-	@OneToOne
-	private String jugEquipo;
+	@ManyToOne
+	@JoinColumn(name="id_equipo")
+	private Equipo jugEquipo;
 	
 	public Jugador() {
 		super();
 	}
 
-	public Jugador(String jugNombre, String jugUsuario, String jugEquipo, String jugRol, String jugPuesto) {
+	public Jugador(int idJugador, String jugNombre, String jugUsuario, String jugRol, String jugPuesto,
+			Equipo jugEquipo) {
 		super();
+		this.idJugador = idJugador;
 		this.jugNombre = jugNombre;
 		this.jugUsuario = jugUsuario;
-		this.jugEquipo = jugEquipo;
 		this.jugRol = jugRol;
 		this.jugPuesto = jugPuesto;
+		this.jugEquipo = jugEquipo;
+	}
+
+	public int getIdJugador() {
+		return idJugador;
+	}
+
+	public void setIdJugador(int idJugador) {
+		this.idJugador = idJugador;
 	}
 
 	public String getJugNombre() {
@@ -46,14 +59,6 @@ public class Jugador {
 		this.jugUsuario = jugUsuario;
 	}
 
-	public String getJugEquipo() {
-		return jugEquipo;
-	}
-
-	public void setJugEquipo(String jugEquipo) {
-		this.jugEquipo = jugEquipo;
-	}
-
 	public String getJugRol() {
 		return jugRol;
 	}
@@ -70,4 +75,13 @@ public class Jugador {
 		this.jugPuesto = jugPuesto;
 	}
 
+	public Equipo getJugEquipo() {
+		return jugEquipo;
+	}
+
+	public void setJugEquipo(Equipo jugEquipo) {
+		this.jugEquipo = jugEquipo;
+	}
+
+	
 }

@@ -67,10 +67,10 @@ public class CargarEquipo extends JFrame {
 		lblNombreEquipo.setBounds(10, 71, 94, 31);
 		panel_1.add(lblNombreEquipo);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Region:");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1.setBounds(10, 218, 94, 31);
-		panel_1.add(lblNewLabel_2_1);
+		JLabel lblRegion = new JLabel("Region:");
+		lblRegion.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblRegion.setBounds(10, 218, 94, 31);
+		panel_1.add(lblRegion);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -78,6 +78,15 @@ public class CargarEquipo extends JFrame {
 		panel_1.add(btnGuardar);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreEquipo.setText("");
+				txtTagEquipo.setText("");
+				cmbRegion.setSelectedIndex(0);
+				cmbSeed.setSelectedIndex(0);
+				txtFaseInicio.setText("");
+			}
+		});
 		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnLimpiar.setBounds(238, 552, 170, 63);
 		panel_1.add(btnLimpiar);
@@ -150,20 +159,20 @@ public class CargarEquipo extends JFrame {
 		txtTagEquipo.setBounds(190, 142, 125, 37);
 		panel_1.add(txtTagEquipo);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Seed:");
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1_1.setBounds(10, 308, 94, 31);
-		panel_1.add(lblNewLabel_2_1_1);
+		JLabel lblSeed = new JLabel("Seed:");
+		lblSeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSeed.setBounds(10, 308, 94, 31);
+		panel_1.add(lblSeed);
 		
 		cmbSeed = new JComboBox();
 		cmbSeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		cmbSeed.setBounds(95, 310, 137, 34);
 		panel_1.add(cmbSeed);
 		
-		JLabel lblNewLabel_2_1_2 = new JLabel("Fase de inicio:");
-		lblNewLabel_2_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1_2.setBounds(10, 393, 137, 31);
-		panel_1.add(lblNewLabel_2_1_2);
+		JLabel lblFaseInicio = new JLabel("Fase de inicio:");
+		lblFaseInicio.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFaseInicio.setBounds(10, 393, 137, 31);
+		panel_1.add(lblFaseInicio);
 		
 		txtFaseInicio = new JTextField();
 		txtFaseInicio.setEditable(false);
