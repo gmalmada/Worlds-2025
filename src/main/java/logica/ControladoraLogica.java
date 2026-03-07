@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.List;
+
 import persistencia.ControladoraPersistencia;
 
 public class ControladoraLogica {
@@ -27,8 +29,27 @@ public class ControladoraLogica {
 		jug.setJugUsuario(usuJug);
 		jug.setJugRol(rolJug);
 		jug.setJugPuesto(puestoJug);
-		jug.setJugEquipo();
 		
+		List<Equipo> listaEquipos = conPersis.traerEquipos();
+		
+		Equipo equipoAsignado = null;
+		
+		//Busco el equipo que coincide con el dato cargado del jugador
+		for(Equipo equi : listaEquipos) {
+			if(equi.getEquiNombre().equals(equipoJug)) {
+				equipoAsignado = equi;
+				break; //Corta el ciclo al encontrar
+			}
+		}
+		
+		jug.setJugEquipo(equipoAsignado);
+		
+		conPersis.guardarJugador(jug);
+		
+	}
+	
+	public List<Equipo> traerEquipos(){
+		return conPersis.traerEquipos();
 	}
 
 }

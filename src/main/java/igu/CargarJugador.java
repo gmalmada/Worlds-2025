@@ -7,10 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -87,6 +90,11 @@ public class CargarJugador extends JFrame {
 				
 				control.guardarJ(nomJug, usuJug, rolJug, puestoJug, equipoJug);
 				
+				JOptionPane optionPane = new JOptionPane("Jugador guardado correctamente");
+				optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+				JDialog dialog = optionPane.createDialog("Guardado exitoso");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
