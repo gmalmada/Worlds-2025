@@ -52,4 +52,9 @@ public class ControladoraLogica {
 		return conPersis.traerEquipos();
 	}
 
+	public void borrarEquipo(int idEquipo) {
+		conPersis.borrarEquipo(idEquipo);
+		
+	}
+
 }

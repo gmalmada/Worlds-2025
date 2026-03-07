@@ -23,6 +23,16 @@ public class ControladoraPersistencia {
 		jugJpa.create(jug);
 		
 	}
+
+	public void borrarEquipo(int idEquipo) {
+		try {
+			equiJpa.destroy(idEquipo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

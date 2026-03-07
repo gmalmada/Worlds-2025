@@ -51,7 +51,7 @@ public class MenuInicial extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(12, 94, 228));
+		panel.setBackground(new Color(0, 128, 192));
 		panel.setBounds(0, 0, 785, 649);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -106,6 +106,13 @@ public class MenuInicial extends JFrame {
 		panel_1.add(btnCargarJugador);
 		
 		JButton btnVerEquipos = new JButton("Ver equipos");
+		btnVerEquipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VerEquipos pantalla = new VerEquipos();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);		
+			}
+		});
 		btnVerEquipos.setBackground(new Color(255, 255, 255));
 		btnVerEquipos.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnVerEquipos.setBounds(53, 225, 341, 70);

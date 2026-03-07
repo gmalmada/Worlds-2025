@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
@@ -25,8 +26,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
 import logica.ControladoraLogica;
+import logica.Equipo;
 
 import java.awt.Toolkit;
+import javax.swing.DefaultComboBoxModel;
 
 public class CargarJugador extends JFrame {
 	
@@ -58,7 +61,7 @@ public class CargarJugador extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(12, 94, 228));
+		panel.setBackground(new Color(0, 128, 192));
 		panel.setBounds(0, 0, 989, 669);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -102,6 +105,16 @@ public class CargarJugador extends JFrame {
 		panel_1.add(btnGuardar);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				txtNombreJugador.setText("");
+				txtUsuario.setText("");
+				cmbEquipo.setSelectedIndex(0);
+				cmbRol.setSelectedIndex(0);
+				cmbPuesto.setSelectedIndex(0);
+			}
+		});
 		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnLimpiar.setBounds(238, 552, 170, 63);
 		panel_1.add(btnLimpiar);
@@ -147,6 +160,7 @@ public class CargarJugador extends JFrame {
 		panel_1.add(lblRol);
 		
 		cmbRol = new JComboBox();
+		cmbRol.setModel(new DefaultComboBoxModel(new String[] {"-", "TOP", "JG", "MID", "ADC", "SUP"}));
 		cmbRol.setBounds(98, 311, 262, 41);
 		panel_1.add(cmbRol);
 		
@@ -163,6 +177,7 @@ public class CargarJugador extends JFrame {
 		panel_1.add(lblPuesto);
 		
 		cmbPuesto = new JComboBox();
+		cmbPuesto.setModel(new DefaultComboBoxModel(new String[] {"-", "TITULAR", "SUPLENTE"}));
 		cmbPuesto.setBounds(98, 403, 262, 41);
 		panel_1.add(cmbPuesto);
 		
@@ -174,7 +189,25 @@ public class CargarJugador extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(CargarJugador.class.getResource("/images/250px-Lol_worlds_logo.png")));
 		lblNewLabel.setBounds(701, 11, 258, 519);
 		panel.add(lblNewLabel);
+		
+		cargarEquipos();
 
+	}
+	
+	private void cargarEquipos() {
+		//Pido la lista de equipos cargados en BDD
+		List<Equipo> listaEquipos = control.traerEquipos();
+		
+		cmbEquipo.removeAllItems();
+		
+		cmbEquipo.addItem("-");
+		
+		//Recorro la lista y agrego el nombre a la cmb
+		if(listaEquipos != null) {
+			for(Equipo equi : listaEquipos) {
+				cmbEquipo.addItem(equi.getEquiNombre());
+			}
+		}
 	}
 
 }

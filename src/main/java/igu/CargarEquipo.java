@@ -55,7 +55,7 @@ public class CargarEquipo extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(12, 94, 228));
+		panel.setBackground(new Color(0, 128, 192));
 		panel.setBounds(0, 0, 992, 671);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -113,6 +113,7 @@ public class CargarEquipo extends JFrame {
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				txtNombreEquipo.setText("");
 				txtTagEquipo.setText("");
 				cmbRegion.setSelectedIndex(0);
