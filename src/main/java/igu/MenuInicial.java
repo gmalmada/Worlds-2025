@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.SystemColor;
 
 public class MenuInicial extends JFrame {
 
@@ -50,7 +51,7 @@ public class MenuInicial extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
+		panel.setBackground(new Color(12, 94, 228));
 		panel.setBounds(0, 0, 785, 649);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -61,7 +62,7 @@ public class MenuInicial extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(74, 90, 234));
+		panel_1.setBackground(new Color(64, 132, 244));
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.setBounds(25, 27, 457, 594);
 		panel.add(panel_1);
@@ -77,7 +78,7 @@ public class MenuInicial extends JFrame {
 		});
 		btnCargarEquipo.setBackground(new Color(255, 255, 255));
 		btnCargarEquipo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnCargarEquipo.setBounds(53, 27, 341, 86);
+		btnCargarEquipo.setBounds(53, 28, 341, 70);
 		panel_1.add(btnCargarEquipo);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -101,14 +102,20 @@ public class MenuInicial extends JFrame {
 		});
 		btnCargarJugador.setBackground(new Color(255, 255, 255));
 		btnCargarJugador.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnCargarJugador.setBounds(53, 140, 341, 86);
+		btnCargarJugador.setBounds(53, 124, 341, 70);
 		panel_1.add(btnCargarJugador);
 		
 		JButton btnVerEquipos = new JButton("Ver equipos");
 		btnVerEquipos.setBackground(new Color(255, 255, 255));
 		btnVerEquipos.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnVerEquipos.setBounds(53, 252, 341, 86);
+		btnVerEquipos.setBounds(53, 225, 341, 70);
 		panel_1.add(btnVerEquipos);
+		
+		JButton btnVerJugadores = new JButton("Ver jugadores");
+		btnVerJugadores.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnVerJugadores.setBackground(Color.WHITE);
+		btnVerJugadores.setBounds(53, 324, 341, 70);
+		panel_1.add(btnVerJugadores);
 
 	}
 }

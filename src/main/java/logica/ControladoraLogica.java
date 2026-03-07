@@ -20,4 +20,15 @@ public class ControladoraLogica {
 		
 	}
 
+	public void guardarJ(String nomJug, String usuJug, String rolJug, String puestoJug, String equipoJug) {
+		Jugador jug = new Jugador();
+		
+		jug.setJugNombre(nomJug);
+		jug.setJugUsuario(usuJug);
+		jug.setJugRol(rolJug);
+		jug.setJugPuesto(puestoJug);
+		jug.setJugEquipo();
+		
+	}
+
 }

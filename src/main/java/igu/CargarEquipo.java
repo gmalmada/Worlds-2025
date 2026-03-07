@@ -22,6 +22,7 @@ import javax.swing.JDialog;
 import javax.swing.JTextPane;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class CargarEquipo extends JFrame {
 	
@@ -54,29 +55,34 @@ public class CargarEquipo extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(12, 94, 228));
 		panel.setBounds(0, 0, 992, 671);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(64, 132, 244));
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.setBounds(10, 11, 658, 649);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cargar equipo");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_1.setBounds(238, 11, 170, 41);
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel_1.setBounds(238, 11, 221, 41);
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNombreEquipo = new JLabel("Nombre:");
+		lblNombreEquipo.setForeground(new Color(255, 255, 255));
 		lblNombreEquipo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNombreEquipo.setBounds(10, 71, 94, 31);
+		lblNombreEquipo.setBounds(10, 71, 398, 31);
 		panel_1.add(lblNombreEquipo);
 		
 		JLabel lblRegion = new JLabel("Region:");
+		lblRegion.setForeground(new Color(255, 255, 255));
 		lblRegion.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblRegion.setBounds(10, 218, 94, 31);
+		lblRegion.setBounds(10, 218, 398, 31);
 		panel_1.add(lblRegion);
 		
 		JButton btnGuardar = new JButton("Guardar");
@@ -93,7 +99,7 @@ public class CargarEquipo extends JFrame {
 				
 				control.guardar(nomEqui, tagEqui, regiEqui, seedEqui, iniEqui);
 				
-				JOptionPane optionPane = new JOptionPane("Equipo guardado correctamente.");
+				JOptionPane optionPane = new JOptionPane("Equipo guardado correctamente");
 				optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
 				JDialog dialog = optionPane.createDialog("Guardado exitoso");
 				dialog.setAlwaysOnTop(true);
@@ -179,8 +185,9 @@ public class CargarEquipo extends JFrame {
 		
 		
 		JLabel lblTagEquipo = new JLabel("Tag (Tres letras):");
+		lblTagEquipo.setForeground(new Color(255, 255, 255));
 		lblTagEquipo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTagEquipo.setBounds(10, 145, 170, 31);
+		lblTagEquipo.setBounds(10, 145, 398, 31);
 		panel_1.add(lblTagEquipo);
 		
 		txtTagEquipo = new JTextField();
@@ -190,8 +197,9 @@ public class CargarEquipo extends JFrame {
 		panel_1.add(txtTagEquipo);
 		
 		JLabel lblSeed = new JLabel("Seed:");
+		lblSeed.setForeground(new Color(255, 255, 255));
 		lblSeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblSeed.setBounds(10, 308, 94, 31);
+		lblSeed.setBounds(10, 308, 398, 31);
 		panel_1.add(lblSeed);
 		
 		cmbSeed = new JComboBox();
@@ -220,8 +228,9 @@ public class CargarEquipo extends JFrame {
 		});
 		
 		JLabel lblFaseInicio = new JLabel("Fase de inicio:");
+		lblFaseInicio.setForeground(new Color(255, 255, 255));
 		lblFaseInicio.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblFaseInicio.setBounds(10, 393, 137, 31);
+		lblFaseInicio.setBounds(10, 393, 398, 31);
 		panel_1.add(lblFaseInicio);
 		
 		txtFaseInicio = new JTextField();

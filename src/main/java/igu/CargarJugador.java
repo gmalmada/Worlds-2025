@@ -20,14 +20,22 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+
+import logica.ControladoraLogica;
+
 import java.awt.Toolkit;
 
 public class CargarJugador extends JFrame {
+	
+	ControladoraLogica control = new ControladoraLogica();
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNombreJugador;
+	private JTextField txtUsuario;
+	private JComboBox cmbRol;
+	private JComboBox cmbPuesto;
+	private JComboBox cmbEquipo;
 
 	/**
 	 * Launch the application.
@@ -47,23 +55,40 @@ public class CargarJugador extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(12, 94, 228));
 		panel.setBounds(0, 0, 989, 669);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBackground(new Color(192, 192, 192));
+		panel_1.setBackground(new Color(64, 132, 244));
 		panel_1.setLayout(null);
 		panel_1.setBounds(10, 11, 658, 649);
 		panel.add(panel_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cargar jugador");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_1.setBounds(238, 11, 170, 41);
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel_1.setBounds(238, 11, 246, 41);
 		panel_1.add(lblNewLabel_1);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String nomJug = txtNombreJugador.getText();
+				String usuJug= txtUsuario.getText();
+				
+				String rolJug = (String) cmbRol.getSelectedItem();
+				String puestoJug = (String) cmbPuesto.getSelectedItem();
+				
+				String equipoJug = (String) cmbEquipo.getSelectedItem();
+				
+				control.guardarJ(nomJug, usuJug, rolJug, puestoJug, equipoJug);
+				
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnGuardar.setBounds(10, 552, 170, 63);
 		panel_1.add(btnGuardar);
@@ -83,55 +108,59 @@ public class CargarJugador extends JFrame {
 		btnVolver.setBounds(467, 552, 170, 63);
 		panel_1.add(btnVolver);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nombre completo:");
-		lblNewLabel_2.setForeground(new Color(0, 0, 0));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(10, 70, 186, 41);
-		panel_1.add(lblNewLabel_2);
+		JLabel lblNombreJugador = new JLabel("Nombre completo:");
+		lblNombreJugador.setForeground(new Color(255, 255, 255));
+		lblNombreJugador.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNombreJugador.setBounds(10, 70, 186, 41);
+		panel_1.add(lblNombreJugador);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField.setBounds(183, 70, 442, 34);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txtNombreJugador = new JTextField();
+		txtNombreJugador.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtNombreJugador.setBounds(183, 70, 442, 34);
+		panel_1.add(txtNombreJugador);
+		txtNombreJugador.setColumns(10);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Usuario:");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1.setBounds(10, 154, 186, 41);
-		panel_1.add(lblNewLabel_2_1);
+		JLabel lblUsuarioJugador = new JLabel("Usuario:");
+		lblUsuarioJugador.setForeground(new Color(255, 255, 255));
+		lblUsuarioJugador.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblUsuarioJugador.setBounds(10, 154, 186, 41);
+		panel_1.add(lblUsuarioJugador);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_1.setColumns(10);
-		textField_1.setBounds(98, 158, 262, 34);
-		panel_1.add(textField_1);
+		txtUsuario = new JTextField();
+		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtUsuario.setColumns(10);
+		txtUsuario.setBounds(98, 158, 262, 34);
+		panel_1.add(txtUsuario);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Rol:");
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1_1.setBounds(10, 307, 81, 41);
-		panel_1.add(lblNewLabel_2_1_1);
+		JLabel lblRol = new JLabel("Rol:");
+		lblRol.setForeground(new Color(255, 255, 255));
+		lblRol.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblRol.setBounds(10, 307, 81, 41);
+		panel_1.add(lblRol);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(98, 311, 262, 41);
-		panel_1.add(comboBox);
+		cmbRol = new JComboBox();
+		cmbRol.setBounds(98, 311, 262, 41);
+		panel_1.add(cmbRol);
 		
-		JLabel lblNewLabel_2_1_1_1 = new JLabel("Equipo:");
-		lblNewLabel_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1_1_1.setBounds(10, 227, 81, 41);
-		panel_1.add(lblNewLabel_2_1_1_1);
+		JLabel lblEquipo = new JLabel("Equipo:");
+		lblEquipo.setForeground(new Color(255, 255, 255));
+		lblEquipo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEquipo.setBounds(10, 227, 81, 41);
+		panel_1.add(lblEquipo);
 		
-		JLabel lblNewLabel_2_1_1_2 = new JLabel("Puesto:");
-		lblNewLabel_2_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1_1_2.setBounds(10, 403, 81, 41);
-		panel_1.add(lblNewLabel_2_1_1_2);
+		JLabel lblPuesto = new JLabel("Puesto:");
+		lblPuesto.setForeground(new Color(255, 255, 255));
+		lblPuesto.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPuesto.setBounds(10, 403, 81, 41);
+		panel_1.add(lblPuesto);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(98, 403, 262, 41);
-		panel_1.add(comboBox_1);
+		cmbPuesto = new JComboBox();
+		cmbPuesto.setBounds(98, 403, 262, 41);
+		panel_1.add(cmbPuesto);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(98, 227, 262, 41);
-		panel_1.add(comboBox_2);
+		cmbEquipo = new JComboBox();
+		cmbEquipo.setBounds(98, 227, 262, 41);
+		panel_1.add(cmbEquipo);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(CargarJugador.class.getResource("/images/250px-Lol_worlds_logo.png")));
