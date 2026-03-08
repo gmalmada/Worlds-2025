@@ -33,6 +33,11 @@ public class ControladoraPersistencia {
 		}
 		
 	}
+
+	public Equipo traerEquipo(int idEquipo) {
+		
+		return equiJpa.findEquipo(idEquipo);
+	}
 	
 	
 	

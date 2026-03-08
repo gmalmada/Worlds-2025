@@ -57,4 +57,9 @@ public class ControladoraLogica {
 		
 	}
 
+	public Equipo traerEquipo(int idEquipo) {
+		
+		return conPersis.traerEquipo(idEquipo);
+	}
+
 }

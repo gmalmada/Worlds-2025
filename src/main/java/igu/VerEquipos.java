@@ -91,7 +91,7 @@ public class VerEquipos extends JFrame {
 					if(tablaEquipos.getSelectedRow() != -1) {
 						int idEquipo = Integer.parseInt(String.valueOf(tablaEquipos.getValueAt(tablaEquipos.getSelectedRow(), 0)));
 						
-						ModificarEquipo pantallaModif = new ModificarEquipo();
+						ModificarEquipo pantallaModif = new ModificarEquipo(idEquipo);
 						pantallaModif.setVisible(true);
 						pantallaModif.setLocationRelativeTo(null);
 						
