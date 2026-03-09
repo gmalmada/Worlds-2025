@@ -30,6 +30,7 @@ public class MenuInicial extends JFrame {
 				try {
 					MenuInicial frame = new MenuInicial();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,6 +72,8 @@ public class MenuInicial extends JFrame {
 		JButton btnCargarEquipo = new JButton("Cargar equipo");
 		btnCargarEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
 				CargarEquipo pantalla = new CargarEquipo();
 				pantalla.setVisible(true);
 				pantalla.setLocationRelativeTo(null);
@@ -95,6 +98,8 @@ public class MenuInicial extends JFrame {
 		JButton btnCargarJugador = new JButton("Cargar jugador");
 		btnCargarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
 				CargarJugador pantalla = new CargarJugador();
 				pantalla.setVisible(true);
 				pantalla.setLocationRelativeTo(null);
@@ -108,6 +113,8 @@ public class MenuInicial extends JFrame {
 		JButton btnVerEquipos = new JButton("Ver equipos");
 		btnVerEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				
 				VerEquipos pantalla = new VerEquipos();
 				pantalla.setVisible(true);
 				pantalla.setLocationRelativeTo(null);		

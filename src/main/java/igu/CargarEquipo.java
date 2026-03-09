@@ -104,6 +104,12 @@ public class CargarEquipo extends JFrame {
 				JDialog dialog = optionPane.createDialog("Guardado exitoso");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
+				
+				dispose();
+				
+				MenuInicial pantalla = new MenuInicial();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -129,6 +135,10 @@ public class CargarEquipo extends JFrame {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
+				MenuInicial pantalla = new MenuInicial();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnVolver.setBounds(467, 552, 170, 63);
@@ -165,17 +175,20 @@ public class CargarEquipo extends JFrame {
 				//Logica Tier S
 				if(region.equals("LAT") || region.equals("KR") || region.equals("CN") || region.equals("NA")) {
 					cmbSeed.setEnabled(true);
+					cmbSeed.addItem("-");
 					cmbSeed.addItem("Seed 1");
-					cmbSeed.addItem("Otro (Seed 2, 3 o 4)");
+					cmbSeed.addItem("Otro(2, 3, 4)");
 					txtFaseInicio.setText("Fase de Grupos");
 				}else if(region.equals("EUW") || region.equals("VTN") || region.equals("PCS") || region.equals("TUK")) {
 					cmbSeed.setEnabled(true);//Desbloqueo menu Seed
+					cmbSeed.addItem("-");
 					cmbSeed.addItem("Seed 1");
 					cmbSeed.addItem("Seed 2");
 					cmbSeed.addItem("Seed 3");
 					txtFaseInicio.setText("Fase de Grupos");
 				}else {
 					cmbSeed.setEnabled(true);
+					cmbSeed.addItem("-");
 					cmbSeed.addItem("Seed 1");
 					cmbSeed.addItem("Seed 2");
 					txtFaseInicio.setText("Fase de Grupos");

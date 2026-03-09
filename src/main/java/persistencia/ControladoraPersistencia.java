@@ -38,6 +38,16 @@ public class ControladoraPersistencia {
 		
 		return equiJpa.findEquipo(idEquipo);
 	}
+
+	public void modificarEquipo(Equipo equi) {
+		try {
+			equiJpa.edit(equi);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

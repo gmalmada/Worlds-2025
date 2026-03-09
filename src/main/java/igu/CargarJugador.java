@@ -98,6 +98,12 @@ public class CargarJugador extends JFrame {
 				JDialog dialog = optionPane.createDialog("Guardado exitoso");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
+				
+				dispose();
+				
+				MenuInicial pantalla = new MenuInicial();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -123,6 +129,10 @@ public class CargarJugador extends JFrame {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
+				MenuInicial pantalla = new MenuInicial();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -185,10 +195,10 @@ public class CargarJugador extends JFrame {
 		cmbEquipo.setBounds(98, 227, 262, 41);
 		panel_1.add(cmbEquipo);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(CargarJugador.class.getResource("/images/250px-Lol_worlds_logo.png")));
-		lblNewLabel.setBounds(701, 11, 258, 519);
-		panel.add(lblNewLabel);
+		JLabel lblLogo = new JLabel("New label");
+		lblLogo.setIcon(new ImageIcon(CargarJugador.class.getResource("/images/250px-Lol_worlds_logo.png")));
+		lblLogo.setBounds(701, 11, 258, 519);
+		panel.add(lblLogo);
 		
 		cargarEquipos();
 

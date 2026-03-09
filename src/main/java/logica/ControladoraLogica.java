@@ -62,4 +62,16 @@ public class ControladoraLogica {
 		return conPersis.traerEquipo(idEquipo);
 	}
 
+	public void modificarEquipo(Equipo equi, String nomEqui, String tagEqui, String regiEqui, String seedEqui, String iniEqui) {
+		
+		equi.setEquiNombre(nomEqui);
+		equi.setEquiTag(tagEqui);
+		equi.setEquiRegion(regiEqui);
+		equi.setEquiSeed(seedEqui);
+		equi.setEquiFaseInicio(iniEqui);
+		
+		conPersis.modificarEquipo(equi);
+		
+	}
+
 }

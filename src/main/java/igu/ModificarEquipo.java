@@ -12,10 +12,14 @@ import logica.ControladoraLogica;
 import logica.Equipo;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -82,11 +86,40 @@ public class ModificarEquipo extends JFrame {
 		panel_1.add(lblRegion);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nomEqui = txtNombreEquipo.getText();
+				String tagEqui = txtTagEquipo.getText();
+				
+				String regiEqui = (String) cmbRegion.getSelectedItem();
+				String seedEqui = (String) cmbSeed.getSelectedItem();
+				
+				String iniEqui = txtFaseInicio.getText();
+				
+				con.modificarEquipo(equi, nomEqui, tagEqui, regiEqui, seedEqui, iniEqui);
+				
+				mostrarMensaje("Edicion exitosa", "Info", "Edicion correcta");
+				dispose();
+				
+				VerEquipos pantalla = new VerEquipos();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
+				
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnGuardar.setBounds(10, 513, 170, 63);
 		panel_1.add(btnGuardar);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreEquipo.setText("");
+				txtTagEquipo.setText("");
+				cmbRegion.setSelectedIndex(0);
+				txtFaseInicio.setText("");
+			}
+		});
 		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnLimpiar.setBounds(238, 513, 170, 63);
 		panel_1.add(btnLimpiar);
@@ -95,6 +128,10 @@ public class ModificarEquipo extends JFrame {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
+				VerEquipos pantalla = new VerEquipos();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -109,8 +146,45 @@ public class ModificarEquipo extends JFrame {
 		
 		cmbRegion = new JComboBox();
 		cmbRegion.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		cmbRegion.setModel(new DefaultComboBoxModel(new String[] {"-", "BR", "CN", "EUW", "JP", "KR", "LAT", "NA", "OCE", "PCS", "TUK", "TWN", "VTN"}));
 		cmbRegion.setBounds(95, 220, 265, 34);
 		panel_1.add(cmbRegion);
+		cmbRegion.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				
+				//Obtengo la seleccion, parseandola a String (Ya que inicialmente es un item)
+				String region = (String) cmbRegion.getSelectedItem();
+				
+				//Limpio el cmbRegion para evitar acumulaciones
+				cmbSeed.removeAllItems();
+				
+				//Reseteo si selecciona el guion
+				if(region.equals("-")) {
+					cmbSeed.setEnabled(false);
+					txtFaseInicio.setText("");
+					return;
+				}
+				
+				//Logica Tier S
+				if(region.equals("LAT") || region.equals("KR") || region.equals("CN") || region.equals("NA")) {
+					cmbSeed.setEnabled(true);
+					cmbSeed.addItem("Seed 1");
+					cmbSeed.addItem("Otro(2, 3, 4)");
+					txtFaseInicio.setText("Fase de Grupos");
+				}else if(region.equals("EUW") || region.equals("VTN") || region.equals("PCS") || region.equals("TUK")) {
+					cmbSeed.setEnabled(true);//Desbloqueo menu Seed
+					cmbSeed.addItem("Seed 1");
+					cmbSeed.addItem("Seed 2");
+					cmbSeed.addItem("Seed 3");
+					txtFaseInicio.setText("Fase de Grupos");
+				}else {
+					cmbSeed.setEnabled(true);
+					cmbSeed.addItem("Seed 1");
+					cmbSeed.addItem("Seed 2");
+					txtFaseInicio.setText("Fase de Grupos");
+				}
+			} 
+		});
 		
 		JLabel lblTagEquipo = new JLabel("Tag (Tres letras):");
 		lblTagEquipo.setForeground(Color.WHITE);
@@ -134,6 +208,25 @@ public class ModificarEquipo extends JFrame {
 		cmbSeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		cmbSeed.setBounds(95, 310, 137, 34);
 		panel_1.add(cmbSeed);
+		cmbSeed.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				
+				String seed = (String) cmbSeed.getSelectedItem();
+				String region = (String) cmbRegion.getSelectedItem();
+				
+				if(seed != null && region != null) {
+					
+					boolean esTierB = region.equals("BR") || region.equals("JP") || region.equals("OCE") || region.equals("TWN");
+					
+					if(seed.equals("Seed 3") || seed.equals("Seed 2") && esTierB) {
+						txtFaseInicio.setText("Play-In");
+					}else {
+						txtFaseInicio.setText("Fase de Grupos");
+					}
+				}
+				
+			}
+		});
 		
 		JLabel lblFaseInicio = new JLabel("Fase de inicio:");
 		lblFaseInicio.setForeground(Color.WHITE);
@@ -169,6 +262,22 @@ public class ModificarEquipo extends JFrame {
 		cmbRegion.setSelectedItem(equi.getEquiRegion());
 		cmbSeed.setSelectedItem(equi.getEquiSeed());
 		
+		
+	}
+	
+	public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+		JOptionPane optionPane = new JOptionPane(mensaje);
+		if(tipo.equals("Info")) { //Elegimos distintos tipos de error
+		optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			if(tipo.equals("Error")) {
+				optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		JDialog dialog = optionPane.createDialog(titulo);
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
 		
 	}
 

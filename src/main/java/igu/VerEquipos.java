@@ -138,16 +138,20 @@ public class VerEquipos extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
+				MenuInicial pantalla = new MenuInicial();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSalir.setBounds(476, 486, 160, 55);
 		panel_1.add(btnSalir);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(VerEquipos.class.getResource("/images/250px-Lol_worlds_logo.png")));
-		lblNewLabel.setBounds(711, 11, 258, 519);
-		panel.add(lblNewLabel);
+		JLabel lblLogo = new JLabel("New label");
+		lblLogo.setIcon(new ImageIcon(VerEquipos.class.getResource("/images/250px-Lol_worlds_logo.png")));
+		lblLogo.setBounds(711, 11, 258, 519);
+		panel.add(lblLogo);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ver equipos");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
