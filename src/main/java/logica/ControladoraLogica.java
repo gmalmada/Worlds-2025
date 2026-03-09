@@ -74,4 +74,9 @@ public class ControladoraLogica {
 		
 	}
 
+	public Jugador traerJugador(int idJugador) {
+		
+		return conPersis.traerJugador(idJugador);
+	}
+
 }

@@ -48,6 +48,11 @@ public class ControladoraPersistencia {
 		}
 		
 	}
+
+	public Jugador traerJugador(int idJugador) {
+		
+		return jugJpa.findJugador(idJugador);
+	}
 	
 	
 	
