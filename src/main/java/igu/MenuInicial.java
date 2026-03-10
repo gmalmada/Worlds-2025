@@ -126,6 +126,15 @@ public class MenuInicial extends JFrame {
 		panel_1.add(btnVerEquipos);
 		
 		JButton btnVerJugadores = new JButton("Ver jugadores");
+		btnVerJugadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				
+				VerJugadores pantalla = new VerJugadores();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
+			}
+		});
 		btnVerJugadores.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnVerJugadores.setBackground(Color.WHITE);
 		btnVerJugadores.setBounds(53, 324, 341, 70);

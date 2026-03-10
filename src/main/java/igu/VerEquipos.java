@@ -153,11 +153,11 @@ public class VerEquipos extends JFrame {
 		lblLogo.setBounds(711, 11, 258, 519);
 		panel.add(lblLogo);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ver equipos");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblNewLabel_1.setBounds(445, 11, 235, 41);
-		panel.add(lblNewLabel_1);
+		JLabel lblVerEquipos = new JLabel("Ver equipos");
+		lblVerEquipos.setForeground(new Color(255, 255, 255));
+		lblVerEquipos.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblVerEquipos.setBounds(445, 11, 235, 41);
+		panel.add(lblVerEquipos);
 
 	}
 	

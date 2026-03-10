@@ -79,4 +79,11 @@ public class ControladoraLogica {
 		return conPersis.traerJugador(idJugador);
 	}
 
+	public List<Jugador> traerJugadores() {
+		
+		return conPersis.traerJugadores();
+	}
+
+
+
 }

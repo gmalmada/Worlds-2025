@@ -10,6 +10,7 @@ public class ControladoraPersistencia {
 	EquipoJpaController equiJpa = new EquipoJpaController();
 	JugadorJpaController jugJpa = new JugadorJpaController();
 	
+	
 	public void guardarEquipo(Equipo equi) {
 		equiJpa.create(equi);
 		
@@ -52,6 +53,11 @@ public class ControladoraPersistencia {
 	public Jugador traerJugador(int idJugador) {
 		
 		return jugJpa.findJugador(idJugador);
+	}
+
+	public List<Jugador> traerJugadores() {
+		
+		return jugJpa.findJugadorEntities();
 	}
 	
 	
