@@ -59,6 +59,16 @@ public class ControladoraPersistencia {
 		
 		return jugJpa.findJugadorEntities();
 	}
+
+	public void borrarJugador(int idJugador) {
+		try {
+			jugJpa.destroy(idJugador);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

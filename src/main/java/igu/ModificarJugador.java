@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 
 import logica.ControladoraLogica;
+import logica.Equipo;
 import logica.Jugador;
 
 import javax.swing.JLabel;
@@ -16,7 +17,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.awt.event.ActionEvent;
 
 public class ModificarJugador extends JFrame {
 
@@ -39,12 +44,12 @@ public class ModificarJugador extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarJugador() {
+	public ModificarJugador(int idJugador) {
 		
 		this.idJugador = idJugador;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1015, 748);
+		setBounds(100, 100, 1015, 701);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -80,6 +85,15 @@ public class ModificarJugador extends JFrame {
 		panel_1.add(btnLimpiar);
 		
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+				VerJugadores pantalla = new VerJugadores();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
+			}
+		});
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnVolver.setBounds(467, 552, 170, 63);
 		panel_1.add(btnVolver);
@@ -115,6 +129,7 @@ public class ModificarJugador extends JFrame {
 		panel_1.add(lblRol);
 		
 		cmbRol = new JComboBox();
+		cmbRol.setModel(new DefaultComboBoxModel(new String[] {"-", "TOP", "JG", "MID", "ADC", "SUP"}));
 		cmbRol.setBounds(98, 311, 262, 41);
 		panel_1.add(cmbRol);
 		
@@ -131,6 +146,7 @@ public class ModificarJugador extends JFrame {
 		panel_1.add(lblPuesto);
 		
 		cmbPuesto = new JComboBox();
+		cmbPuesto.setModel(new DefaultComboBoxModel(new String[] {"-", "TITULAR", "SUPLENTE"}));
 		cmbPuesto.setBounds(98, 403, 262, 41);
 		panel_1.add(cmbPuesto);
 		
@@ -143,8 +159,25 @@ public class ModificarJugador extends JFrame {
 		lblLogo.setBounds(709, 11, 258, 519);
 		panel.add(lblLogo);
 		
+		cargarEquipos();
 		cargarDatos(idJugador);
 
+	}
+	
+	private void cargarEquipos() {
+		//Pido la lista de equipos cargados en BDD
+		List<Equipo> listaEquipos = con.traerEquipos();
+		
+		cmbEquipo.removeAllItems();
+		
+		cmbEquipo.addItem("-");
+		
+		//Recorro la lista y agrego el nombre a la cmb
+		if(listaEquipos != null) {
+			for(Equipo equi : listaEquipos) {
+				cmbEquipo.addItem(equi.getEquiNombre());
+			}
+		}
 	}
 	
 	public void cargarDatos(int idJugador) {
@@ -156,9 +189,8 @@ public class ModificarJugador extends JFrame {
 		
 		cmbRol.setSelectedItem(jug.getJugRol());
 		cmbPuesto.setSelectedItem(jug.getJugPuesto());
-		cmbEquipo.setSelectedItem(jug.getJugEquipo());
-		
-		
+		cmbEquipo.setSelectedItem(jug.getJugEquipo().getEquiNombre());
+
 	}
 	
 }

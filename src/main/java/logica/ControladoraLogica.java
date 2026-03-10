@@ -84,6 +84,11 @@ public class ControladoraLogica {
 		return conPersis.traerJugadores();
 	}
 
+	public void borrarJugador(int idJugador) {
+		
+		conPersis.borrarJugador(idJugador);
+	}
+
 
 
 }

@@ -15,10 +15,13 @@ import logica.Jugador;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -83,11 +86,49 @@ public class VerJugadores extends JFrame {
 		scrollPane.setViewportView(tablaJugadores);
 		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(tablaJugadores.getRowCount() > 0) {
+					if(tablaJugadores.getSelectedRow() != -1) {
+						int idJugador = Integer.parseInt(String.valueOf(tablaJugadores.getValueAt(tablaJugadores.getSelectedRow(), 0)));
+						
+						ModificarJugador pantalla = new ModificarJugador(idJugador);
+						pantalla.setVisible(true);
+						pantalla.setLocationRelativeTo(null);
+						
+						dispose();
+					}else {
+						mostrarMensaje("No seleccionó ningun jugador", "Error", "Error al modificar");
+					}
+				}else {
+					mostrarMensaje("La tabla está vacía", "Error", "Error al modificar");
+				}
+				
+			}
+		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnEditar.setBounds(31, 486, 160, 55);
 		panel_1.add(btnEditar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(tablaJugadores.getRowCount() > 0) {
+					if(tablaJugadores.getSelectedRow() != -1) {
+						int idJugador = Integer.parseInt(String.valueOf(tablaJugadores.getValueAt(tablaJugadores.getSelectedRow(), 0)));
+						
+					con.borrarJugador(idJugador);
+					
+					mostrarMensaje("Jugador eliminado exitosamente", "Info", "Eliminacion correcta");
+					cargarTabla();
+					
+					}
+				}
+				
+			}
+		});
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnEliminar.setBounds(244, 486, 160, 55);
 		panel_1.add(btnEliminar);
@@ -117,6 +158,22 @@ public class VerJugadores extends JFrame {
 		lblVerJugadores.setBounds(445, 11, 235, 41);
 		panel.add(lblVerJugadores);
 
+	}
+	
+	public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+		JOptionPane optionPane = new JOptionPane(mensaje);
+		if(tipo.equals("Info")) { //Elegimos distintos tipos de error
+		optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			if(tipo.equals("Error")) {
+				optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		JDialog dialog = optionPane.createDialog(titulo);
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+		
 	}
 	
 	public void cargarTabla() {
