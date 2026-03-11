@@ -89,6 +89,17 @@ public class ControladoraLogica {
 		conPersis.borrarJugador(idJugador);
 	}
 
+	public void modificarJugador(Jugador jug, String nomJug, String usuJug, String equiJug, String rolJug,
+			String puestoJug) {
+		
+		jug.setJugNombre(nomJug);
+		jug.setJugUsuario(usuJug);
+		jug.setJugEquipo(null);
+		jug.setJugRol(rolJug);
+		jug.setJugPuesto(puestoJug);
+		
+	}
+
 
 
 }

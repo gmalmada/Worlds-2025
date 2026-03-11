@@ -80,6 +80,15 @@ public class ModificarJugador extends JFrame {
 		panel_1.add(btnGuardar);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreJugador.setText("");
+				txtUsuario.setText("");
+				cmbEquipo.setSelectedIndex(0);
+				cmbRol.setSelectedIndex(0);
+				cmbPuesto.setSelectedIndex(0);
+			}
+		});
 		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnLimpiar.setBounds(238, 552, 170, 63);
 		panel_1.add(btnLimpiar);

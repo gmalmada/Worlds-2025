@@ -69,6 +69,16 @@ public class ControladoraPersistencia {
 		}
 		
 	}
+
+	public void modificarJugador(Jugador jug) {
+		try {
+			jugJpa.edit(jug);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	
