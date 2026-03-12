@@ -75,6 +75,20 @@ public class ModificarJugador extends JFrame {
 		panel_1.add(lblNewLabel_1);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String nomJug = txtNombreJugador.getText();
+				String usuJug = txtUsuario.getText();
+				
+				String equiJug = (String) cmbEquipo.getSelectedItem();
+				String rolJug = (String) cmbEquipo.getSelectedItem();
+				String puestoJug = (String) cmbPuesto.getSelectedItem();
+				
+				
+				con.modificarJugador(jug, nomJug, usuJug, equiJug, rolJug, puestoJug);
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnGuardar.setBounds(10, 552, 170, 63);
 		panel_1.add(btnGuardar);

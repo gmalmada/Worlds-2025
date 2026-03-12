@@ -89,16 +89,33 @@ public class ControladoraLogica {
 		conPersis.borrarJugador(idJugador);
 	}
 
-	public void modificarJugador(Jugador jug, String nomJug, String usuJug, String equiJug, String rolJug,
-			String puestoJug) {
+	public void modificarJugador(Jugador jug, String nomJug, String usuJug, String equiJug, String rolJug, String puestoJug
+			) {
 		
 		jug.setJugNombre(nomJug);
 		jug.setJugUsuario(usuJug);
-		jug.setJugEquipo(null);
+		
+		
+		List<Equipo> listaEquipos = conPersis.traerEquipos();
+		
+		Equipo equipoAsignado = null;
+		for(Equipo equi : listaEquipos) {
+			if(equi.getEquiNombre().equals(equiJug)) {
+				equipoAsignado = equi;
+				break;
+			}
+		}
+		
+		jug.setJugEquipo(equipoAsignado);
+		
 		jug.setJugRol(rolJug);
 		jug.setJugPuesto(puestoJug);
 		
+		conPersis.modificarJugador(jug);
+		
 	}
+
+	
 
 
 

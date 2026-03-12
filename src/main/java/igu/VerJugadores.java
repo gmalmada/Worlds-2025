@@ -185,14 +185,18 @@ public class VerJugadores extends JFrame {
 		}
 	};
 	
-		String titulos[] = {"ID" , "Nombre", "Usuario", "Rol", "Puesto", "Equipo"};
+		String titulos[] = {"ID" , "Nombre", "Usuario", "Equipo", "Rol", "Puesto"};
 		modeloTabla.setColumnIdentifiers(titulos);
 		
 		List<Jugador> listaJugadores = con.traerJugadores();
 		
 		if(listaJugadores != null) {
 			for(Jugador jug : listaJugadores) {
-				Object [] objeto = {jug.getIdJugador(), jug.getJugNombre(), jug.getJugUsuario(), jug.getJugRol(), jug.getJugPuesto(), jug.getJugEquipo().getEquiNombre()};
+				String nombreEquipo = "-";
+				if(jug.getJugEquipo() != null) {
+					nombreEquipo = jug.getJugEquipo().getEquiNombre();
+				}
+				Object [] objeto = {jug.getIdJugador(), jug.getJugNombre(), jug.getJugUsuario(), nombreEquipo, jug.getJugRol(), jug.getJugPuesto()};
 				
 				modeloTabla.addRow(objeto);
 			}
