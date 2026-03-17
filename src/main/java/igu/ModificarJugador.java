@@ -13,10 +13,13 @@ import logica.Equipo;
 import logica.Jugador;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -68,7 +71,7 @@ public class ModificarJugador extends JFrame {
 		panel_1.setBounds(10, 11, 658, 649);
 		panel.add(panel_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("Cargar jugador");
+		JLabel lblNewLabel_1 = new JLabel("Modificar jugador");
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblNewLabel_1.setBounds(238, 11, 246, 41);
@@ -82,11 +85,18 @@ public class ModificarJugador extends JFrame {
 				String usuJug = txtUsuario.getText();
 				
 				String equiJug = (String) cmbEquipo.getSelectedItem();
-				String rolJug = (String) cmbEquipo.getSelectedItem();
+				String rolJug = (String) cmbRol.getSelectedItem();
 				String puestoJug = (String) cmbPuesto.getSelectedItem();
 				
 				
 				con.modificarJugador(jug, nomJug, usuJug, equiJug, rolJug, puestoJug);
+				
+				mostrarMensaje("Edición exitosa", "INFO", "Edicion correcta");
+				dispose();
+				
+				VerJugadores pantalla = new VerJugadores();
+				pantalla.setVisible(true);
+				pantalla.setLocationRelativeTo(null);
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -214,6 +224,22 @@ public class ModificarJugador extends JFrame {
 		cmbPuesto.setSelectedItem(jug.getJugPuesto());
 		cmbEquipo.setSelectedItem(jug.getJugEquipo().getEquiNombre());
 
+	}
+	
+	public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+		JOptionPane optionPane = new JOptionPane(mensaje);
+		if(tipo.equals("Info")) { //Elegimos distintos tipos de error
+		optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			if(tipo.equals("Error")) {
+				optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		JDialog dialog = optionPane.createDialog(titulo);
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+		
 	}
 	
 }
